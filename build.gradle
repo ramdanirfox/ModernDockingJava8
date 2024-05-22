@@ -1,9 +1,21 @@
+buildscript {
+    repositories {
+        maven {
+            url "https://plugins.gradle.org/m2/"
+        }
+    }
+    dependencies {
+		classpath "org.javamodularity:moduleplugin:1.8.15"
+    }
+}
+
 plugins {
 	id 'java'
 	id 'idea'
 	id 'maven-publish'
 	id 'signing'
 	id "com.github.ben-manes.versions" version "0.50.0"
+	id 'org.javamodularity.moduleplugin' version '1.8.15' apply false
 }
 
 java {
@@ -17,8 +29,22 @@ repositories {
     maven { url "https://s01.oss.sonatype.org/content/repositories/snapshots/" }
 }
 
+
 subprojects {
+
 	version = "0.12.0-SNAPSHOT"
+
+	apply plugin: 'java'
+    apply plugin: 'org.javamodularity.moduleplugin'
+
+	modularity.improveEclipseClasspathFile()
+    modularity.moduleVersion '1.2.3'
+
+    repositories {
+        mavenCentral()
+    }
+
+    build.dependsOn javadoc
 }
 
 publishing {

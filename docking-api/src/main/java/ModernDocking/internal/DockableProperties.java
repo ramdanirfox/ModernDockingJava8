@@ -25,6 +25,7 @@ import ModernDocking.Dockable;
 import ModernDocking.DockingProperty;
 
 import java.lang.reflect.Field;
+import java.lang.reflect.Modifier;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -50,7 +51,10 @@ public class DockableProperties {
             try {
                 // make sure we can access the field if it is private/protected. only try this if we're sure we can't already access it
                 // because it may result in an IllegalAccessException for trying
-                if (!field.canAccess(dockable)) {
+                boolean isAccessible = field.isAccessible();
+                boolean isPublic = (field.getModifiers() & Modifier.PUBLIC) != 0;;
+                // if (!field.canAccess(dockable)) {
+                if (!isAccessible || !isPublic) {
                     field.setAccessible(true);
                 }
 

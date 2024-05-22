@@ -44,7 +44,10 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class DockingStateAPI {
-    private static final Logger logger = Logger.getLogger(DockingStateAPI.class.getPackageName());
+    private static final String className = DockingStateAPI.class.getName();
+	private static final Logger logger = Logger.getLogger(className.substring(0, className.lastIndexOf('.')));
+
+    // private static final Logger logger = Logger.getLogger(DockingStateAPI.class.getPackageName());
 
     /**
      * cached layout for when a maximized dockable is minimized
@@ -56,7 +59,7 @@ public class DockingStateAPI {
         this.docking = docking;
     }
 
-    @Deprecated(forRemoval = true)
+    // @Deprecated(forRemoval = true)
     public RootDockState getRootState(Window window) {
         RootDockingPanelAPI root = DockingComponentUtils.rootForWindow(docking, window);
 
@@ -218,7 +221,7 @@ public class DockingStateAPI {
         window.setSize(size);
     }
 
-    @Deprecated(forRemoval = true)
+    // @Deprecated(forRemoval = true)
     public void restoreState(Window window, RootDockState state) {
         RootDockingPanelAPI root = DockingComponentUtils.rootForWindow(docking, window);
 

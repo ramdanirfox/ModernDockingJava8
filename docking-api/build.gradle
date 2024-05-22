@@ -6,10 +6,16 @@ plugins {
 	id "com.github.ben-manes.versions" version "0.50.0"
 }
 
-java {
-	sourceCompatibility = JavaVersion.VERSION_1_9
-	targetCompatibility = JavaVersion.VERSION_1_9
-}
+modularity.mixedJavaRelease 8
+
+apply from: "$rootDir/gradle/shared/greeter.provider.gradle"
+apply plugin: 'java'
+apply plugin: 'org.javamodularity.moduleplugin'
+
+// java {
+	// sourceCompatibility = JavaVersion.VERSION_1_9
+	// targetCompatibility = JavaVersion.VERSION_1_9
+// }
 
 repositories {
 	mavenLocal()
@@ -17,7 +23,7 @@ repositories {
 	maven { url "https://s01.oss.sonatype.org/content/repositories/snapshots/" }
 }
 
-sourceSets.main.java.srcDirs = ['src']
+sourceSets.main.java.srcDirs = ['src/main/java']
 sourceSets.main.resources.srcDirs = ['resources']
 
 // NOTE: do not add new dependencies here, Modern Docking is a zero-dependency library
@@ -26,7 +32,7 @@ dependencies {
 
 java {
 	withJavadocJar()
-	withSourcesJar()
+	// withSourcesJar()
 }
 
 base {

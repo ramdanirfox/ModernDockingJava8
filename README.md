@@ -1,5 +1,9 @@
 # Modern Docking
 
+This version of Modern Docking make it compatible for usage in Java 8 by utilizing:
+
+`org.javamodularity.moduleplugin` plugins in Gradle Build
+
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 ![Maven Central](https://img.shields.io/maven-central/v/io.github.andrewauclair/modern-docking-api?label=modern-docking-api)
@@ -28,7 +32,7 @@ docs).
 
 
 ## Features
-- Supports Java 11 and newer
+- Supports Java 11 (`or Java 8`) and newer
 - Docking Component Interface
 - Docking Frames (Floating JFrame)
 - Docking Ports (One per frame)

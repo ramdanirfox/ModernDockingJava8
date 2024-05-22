@@ -79,7 +79,11 @@ public class DockedTabbedPanel extends DockingPanel implements ChangeListener {
 		setNotSelectedBorder();
 
 		// we only support tabs on top if we have FlatLaf because we can add a trailing component for our menu
-		boolean usingFlatLaf = tabs.getUI().getClass().getPackageName().startsWith("com.formdev.flatlaf");
+		final String className = tabs.getUI().getClass().getName();
+		final String packageName = className.substring(0, className.lastIndexOf('.'));
+		boolean usingFlatLaf = packageName.startsWith("com.formdev.flatlaf");
+		// boolean usingFlatLaf = tabs.getUI().getClass().getPackageName().startsWith("com.formdev.flatlaf");
+
 
 		if (Settings.alwaysDisplayTabsMode(dockable.getDockable()) && usingFlatLaf) {
 			tabs.setTabPlacement(JTabbedPane.TOP);

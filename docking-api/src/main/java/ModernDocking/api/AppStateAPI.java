@@ -44,7 +44,10 @@ import java.util.logging.Logger;
  * This class is used for auto persisting the application layout to a file when there are changes to the layout
  */
 public class AppStateAPI {
-	private static final Logger logger = Logger.getLogger(AppStateAPI.class.getPackageName());
+	private static final String className = AppStateAPI.class.getName();
+	private static final Logger logger = Logger.getLogger(className.substring(0, className.lastIndexOf('.')));
+
+	// private static final Logger logger = Logger.getLogger(AppStateAPI.class.getPackageName());
 	private static final int PERSIST_TIMER_DELAY_MS = 500;
 
 	private static boolean autoPersist = false;
